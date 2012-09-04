@@ -1,8 +1,9 @@
+
 //
 //  CalculatorViewController.h
 //  Calculator
 //
-//  Created by Jonas Lamis on 9/3/12.
+//  Created by Adam Tait on 9/3/12.
 //  Copyright (c) 2012 Rally. All rights reserved.
 //
 
@@ -10,4 +11,5 @@
 
 @interface CalculatorViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *display;
 @end

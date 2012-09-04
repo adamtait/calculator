@@ -2,59 +2,38 @@
 //  CalculatorViewController.m
 //  Calculator
 //
-//  Created by Jonas Lamis on 9/3/12.
+//  Created by Adam Tait on 9/3/12.
 //  Copyright (c) 2012 Rally. All rights reserved.
 //
 
 #import "CalculatorViewController.h"
 
+@interface CalculatorViewController()
+@property (nonatomic) BOOL userIsInMiddleOfEnteringANumber;
+@end
+
 @implementation CalculatorViewController
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Release any cached data, images, etc that aren't in use.
+@synthesize display;
+@synthesize userIsInMiddleOfEnteringANumber;
+
+- (IBAction)digitPressed:(UIButton *)sender {
+    NSString *digit = [sender currentTitle];
+    
+    if(userIsInMiddleOfEnteringANumber) {
+        self.display.text = [self.display.text stringByAppendingString:digit];
+    } else {
+        self.display.text = digit;
+        userIsInMiddleOfEnteringANumber = YES;
+    }
+
+}
+- (IBAction)enterPressed {
 }
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+- (IBAction)operationPressed:(UIButton *)sender {
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
-}
+//NSLog(@"user touched %@", digit);
 
 @end
