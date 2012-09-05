@@ -56,6 +56,9 @@
     else if([operation isEqualToString:@"cos"]){
         result = cos([self popOperand]);
     }
+    else if([operation isEqualToString:@"sqrt"]){
+        result = sqrt([self popOperand]);
+    }
     
     [self pushOperand:result];
     return result;
