@@ -24,6 +24,7 @@
 }
 
 - (void)pushOperand:(double)operand {
+    NSLog(@"adding an operand: %f", operand);
     NSNumber *numberObject = [NSNumber numberWithDouble:operand];
     [self.operandStack addObject:numberObject];
 }
@@ -37,7 +38,12 @@
 - (double)performOperation:(NSString *)operation {
     double result = 0;
     if([operation isEqualToString:@"+"]){
-        result = [self popOperand] + [self popOperand];
+        double first = [self popOperand];
+        NSLog(@"using operand: %f", first);
+        double second = [self popOperand];
+        NSLog(@"using operand: %f", second);
+        result = first + second;
+        NSLog(@"result of addition: %f", result);
     }
     else if([operation isEqualToString:@"*"]){
         result = [self popOperand] * [self popOperand];
@@ -58,6 +64,9 @@
     }
     else if([operation isEqualToString:@"sqrt"]){
         result = sqrt([self popOperand]);
+    }
+    else if([operation isEqualToString:@"π"]){
+        result = 3.14159265;
     }
     
     [self pushOperand:result];
