@@ -44,6 +44,13 @@
     [self appendToHistory:self.display.text];
 }
 
+- (IBAction)clear {
+    self.userIsInMiddleOfEnteringANumber = NO;
+    [self.brain clearOperands];
+    self.display.text = @"";
+    self.history.text = @"";
+}
+
 - (IBAction)operationPressed:(UIButton *)sender {
     if(self.userIsInMiddleOfEnteringANumber) {
         [self enterPressed];

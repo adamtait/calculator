@@ -10,7 +10,8 @@
 
 @interface CalculatorBrain : NSObject
 
-- (void)pushOperand:(double)operand;
-- (double)performOperation:(NSString *)operation;
+    - (void)pushOperand:(double)operand;
+    - (double)performOperation:(NSString *)operation;
+    - (void)clearOperands;
 
 @end
