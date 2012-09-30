@@ -19,7 +19,7 @@
 
 + (NSDictionary *)sampleVariableValues
 {
-    return [[NSDictionary alloc] init];
+    return [[NSDictionary alloc] initWithObjectsAndKeys:@"1", @"x", @"2", @"y", nil];
 }
 
 - (NSMutableArray *)programStack
@@ -72,6 +72,7 @@
     }
     else if ([topOfStack isKindOfClass:[NSString class]])
     {
+        
         NSString *operation = topOfStack;
         if ([operation isEqualToString:@"+"]) {
             result = [self popOperandOffProgramStack:stack usingVariableValues:variableValues] + [self popOperandOffProgramStack:stack usingVariableValues:variableValues];
@@ -83,6 +84,15 @@
         } else if ([operation isEqualToString:@"/"]) {
             double divisor = [self popOperandOffProgramStack:stack usingVariableValues:variableValues];
             if (divisor) result = [self popOperandOffProgramStack:stack usingVariableValues:variableValues] / divisor;
+        } else {
+            if ( [variableValues valueForKey:(NSString*)topOfStack] != NULL )
+            {
+                result = [[variableValues valueForKey:(NSString*)topOfStack] doubleValue];
+            } 
+            else
+            {
+                result = 0;
+            }
         }
     }
     
