@@ -63,6 +63,17 @@
     self.display.text = [NSString stringWithFormat:@"%g", result];
 }
 
+- (IBAction)variablePressed:(UIButton *)sender {
+    if(self.userIsInMiddleOfEnteringANumber) {
+        [self enterPressed];
+    }
+    
+    NSString *variable = sender.currentTitle;
+    [self appendToHistory:variable];
+    [self.brain pushVariable:variable];
+}
+
+
 - (void)appendToHistory:(NSString *)string {
     self.history.text = [self.history.text stringByAppendingString:string];
     self.history.text = [self.history.text stringByAppendingString:@" "];
