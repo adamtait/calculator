@@ -79,6 +79,10 @@
     self.history.text = [self.history.text stringByAppendingString:@" "];
 }
 
+- (IBAction)variablesUsedPressed:(UIButton *)sender {
+    
+}
+
 //NSLog(@"user touched %@", digit);
 
 - (void)viewDidUnload {

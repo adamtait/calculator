@@ -38,9 +38,23 @@
     [self.programStack removeAllObjects];
 }
 
-+ (NSString *)descriptionOfProgram:(id)program
++ (NSString *)descriptionOfProgram:(NSMutableArray *)program
 {
-    return @"Implement this in Homework #2";
+    id obj = [program lastObject];
+    if ([obj isKindOfClass:[NSNumber class]])
+    {
+        return obj;
+    }
+    return obj;
+}
+
++ (NSSet *)variablesUsedInProgram:(id)program
+{
+    NSSet *programSet = [NSSet setWithArray:program];
+    NSSet *variablesUsed = [programSet objectsPassingTest:^(id object, BOOL *stop) {
+        return (BOOL) !([object isKindOfClass:[NSNumber class]] || [object isKindOfClass:[NSString class]]);
+    }];
+    return ([variablesUsed count] > 0) ? variablesUsed : nil;
 }
 
 - (void)pushOperand:(double)operand
@@ -105,8 +119,7 @@
     if ([program isKindOfClass:[NSArray class]]) {
         stack = [program mutableCopy];
     }
-    return [self popOperandOffProgramStack:stack usingVariableValues:variableValues];
-    
+    return [self popOperandOffProgramStack:stack usingVariableValues:variableValues];    
 }
 
 @end
